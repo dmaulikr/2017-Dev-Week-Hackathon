@@ -1,0 +1,422 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Mobile Sensor Cloud - Sensor Provider</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
+    <style>
+		table {
+		    font-family: arial, sans-serif;
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+
+		td, th {
+		    border: 1px solid #dddddd;
+		    text-align: left;
+		    padding: 8px;
+		}
+
+		tr:nth-child(even) {
+		    background-color: #dddddd;
+		}
+	</style>
+  </head>
+  <body ng-app="broadcastApp">
+    <div ng-controller="BcCtrl">
+      <div class="container">
+        <h1>Physical Sensor Provider - Management Page</h1>
+        <form class="form-horizontal">
+          <legend></legend>
+          <div class="form-group">
+            <!-- Lat Inc -->
+            <label class="col-sm-2 control-label">Sensor Name</label>
+            <div class="col-sm-2">
+              <input type="" class="form-control" ng-model="SensorName">
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Long Inc -->
+            <label class="col-sm-2 control-label">Sensor Type</label>
+            <div class="col-sm-2">
+              <select class="form-control" name="DropDownSensorTypeOption" id="DropDownSensorTypeOption" title="Select a Sensor Type" style="width: 200px;">
+                    <option value=0>--- Select A Sensor Type ---</option>
+                    <option value=1>Noise Sensor</option>
+                    <option value=2>Air Pollution Sensor</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Delay -->
+            <label class="col-sm-2 control-label">Add to Bus</label>
+            <div class="col-sm-2">
+              <select class="form-control" name="DropDownBusOption" id="DropDownBusOption" title="Select a Bus Route" style="width:500px;">
+                    <option value="0">--- Select A Bus Route ---</option>
+                    <option value="10036">10 - SANTA CLARA TRANSIT- METRO AIR, West</option>
+                    <option value="10033">10 - SANTA CLARA TRANSIT- METRO AIR, East</option>
+                    <option value="12036">12 - SAN JOSE CIVIC CENTER - EASTRI, West</option>
+                    <option value="12033">12 - SAN JOSE CIVIC CENTER - EASTRI, East</option>
+                    <option value="14035">14 - GILROY TRANS CTR - ST. LOUISE , South</option>
+                    <option value="14034">14 - GILROY TRANS CTR - ST. LOUISE , North</option>
+                    <option value="17035">17 - GILROY TRNS CTR - MNTRY &amp; LS A, South</option>
+                    <option value="17034">17 - GILROY TRNS CTR - MNTRY &amp; LS A, North</option>
+                    <option value="19035">19 - GILROY TRANS CTR - WREN &amp; MANT, South</option>
+                    <option value="19034">19 - GILROY TRANS CTR - WREN &amp; MANT, North</option>
+                    <option value="22036">22 - PALO ALTO - EASTRIDGE, West</option>
+                    <option value="22033">22 - PALO ALTO - EASTRIDGE, East</option>
+                    <option value="23036">23 - DE ANZA COL - ALUM ROCK TRANS , West</option>
+                    <option value="23033">23 - DE ANZA COL - ALUM ROCK TRANS , East</option>
+                    <option value="25036">25 - DE ANZA COL - ALUM ROCK TRANS , West</option>
+                    <option value="25033">25 - DE ANZA COL - ALUM ROCK TRANS , East</option>
+                    <option value="26036">26 - SUNNYVALE/LOCKHEED - EASTRIDGE, West</option>
+                    <option value="26033">26 - SUNNYVALE/LOCKHEED - EASTRIDGE, East</option>
+                    <option value="27036">27 - GOOD SAM HOSP - KAISER SAN JOS, West</option>
+                    <option value="27033">27 - GOOD SAM HOSP - KAISER SAN JOS, East</option>
+                    <option value="31035">31 - EVERGREEN VALLEY COL - EASTRID, South</option>
+                    <option value="31034">31 - EVERGREEN VALLEY COL - EASTRID, North</option>
+                    <option value="35035">35 - DNTN MTN VIEW - STANFORD SHOP , South</option>
+                    <option value="35034">35 - DNTN MTN VIEW - STANFORD SHOP , North</option>
+                    <option value="39035">39 - THE VILLAGES - EASTRIDGE, South</option>
+                    <option value="39034">39 - THE VILLAGES - EASTRIDGE, North</option>
+                    <option value="40035">40 - FOOTHILL COL - LA AVENIDA &amp; SH, South</option>
+                    <option value="40034">40 - FOOTHILL COL - LA AVENIDA &amp; SH, North</option>
+                    <option value="47035">47 - GREAT MALL - MCCARTHY RANCH, South</option>
+                    <option value="47034">47 - GREAT MALL - MCCARTHY RANCH, North</option>
+                    <option value="48035">48 - LOS GATOS - WINCHESTER LRT, South</option>
+                    <option value="48034">48 - LOS GATOS - WINCHESTER LRT, North</option>
+                    <option value="49035">49 - LOS GATOS - WINCHESTER LRT, South</option>
+                    <option value="49034">49 - LOS GATOS - WINCHESTER LRT, North</option>
+                    <option value="54035">54 - DE ANZA COLLEGE - LOCKHEED, South</option>
+                    <option value="54034">54 - DE ANZA COLLEGE - LOCKHEED, North</option>
+                    <option value="55035">55 - DE ANZA COLLEGE - GREAT AMERIC, South</option>
+                    <option value="55034">55 - DE ANZA COLLEGE - GREAT AMERIC, North</option>
+                    <option value="57035">57 - WEST VALLEY COLL - GREAT AMERI, South</option>
+                    <option value="57034">57 - WEST VALLEY COLL - GREAT AMERI, North</option>
+                    <option value="60035">60 - WINCHESTER  TC - GT AMERICA, South</option>
+                    <option value="60034">60 - WINCHESTER  TC - GT AMERICA, North</option>
+                    <option value="61035">61 - GOOD SAM HOSP - SIERRA &amp; PIEDM, South</option>
+                    <option value="61034">61 - GOOD SAM HOSP - SIERRA &amp; PIEDM, North</option>
+                    <option value="62035">62 - GOOD SAM HOSP - SIERRA &amp; PIEDM, South</option>
+                    <option value="62034">62 - GOOD SAM HOSP - SIERRA &amp; PIEDM, North</option>
+                    <option value="63035">63 - ALMADEN EXPY - SAN JOSE STATE, South</option>
+                    <option value="63034">63 - ALMADEN EXPY - SAN JOSE STATE, North</option>
+                    <option value="64035">64 - ALMADEN LRT - MCKEE &amp; WHITE, South</option>
+                    <option value="64034">64 - ALMADEN LRT - MCKEE &amp; WHITE, North</option>
+                    <option value="66035">66 - KAISER SAN JOSE - MILPITAS/DIX, South</option>
+                    <option value="66034">66 - KAISER SAN JOSE - MILPITAS/DIX, North</option>
+                    <option value="68035">68 - GILROY TC - SAN JOSE DIRIDON, South</option>
+                    <option value="68034">68 - GILROY TC - SAN JOSE DIRIDON, North</option>
+                    <option value="70035">70 - CAPITOL LRT STN - GREAT MALL/M, South</option>
+                    <option value="70034">70 - CAPITOL LRT STN - GREAT MALL/M, North</option>
+                    <option value="71035">71 - EASTRIDGE- GREAT MALL/MAIN, South</option>
+                    <option value="71034">71 - EASTRIDGE- GREAT MALL/MAIN, North</option>
+                    <option value="72035">72 - SENTER/MONTEREY - DOWNTOWN SAN, South</option>
+                    <option value="72034">72 - SENTER/MONTEREY - DOWNTOWN SAN, North</option>
+                    <option value="73035">73 - SNELL &amp; CAPITOL - DOWNTWN SAN , South</option>
+                    <option value="73034">73 - SNELL &amp; CAPITOL - DOWNTWN SAN , North</option>
+                    <option value="77035">77 - EASTRIDGE - GREAT MALL/MAIN, South</option>
+                    <option value="77034">77 - EASTRIDGE - GREAT MALL/MAIN, North</option>
+                    <option value="82035">82 - WESTGATE - DOWNTOWN SAN JOSE, South</option>
+                    <option value="82034">82 - WESTGATE - DOWNTOWN SAN JOSE, North</option>
+                    <option value="181035">181 - SAN JOSE DIRIDON - FREMONT BA, South</option>
+                    <option value="181034">181 - SAN JOSE DIRIDON - FREMONT BA, North</option>
+                    <option value="323036">323 - DE ANZA COL - DOWNTOWN SAN JO, West</option>
+                    <option value="323033">323 - DE ANZA COL - DOWNTOWN SAN JO, East</option>
+                    <option value="522036">522 - PALO ALTO - EASTRIDGE, West</option>
+                    <option value="522033">522 - PALO ALTO - EASTRIDGE, East</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- Start Btn -->
+            <label class="col-sm-2 control-label"></label> 
+            <div class="col-sm-2">
+              <br>
+              <a ng-disabled="isDisabled" class="btn btn-primary" ng-click="AddSensor()">Add</a>
+              <br>
+              <br>
+              <a ng-disabled="isDisabled" class="btn btn-primary" ng-click="ShowAllSensor()">Show All Sensors</a>
+              <br>
+              <br>
+              <a ng-disabled="isDisabled" class="btn btn-primary" ng-click="StartAllSensor()">Start All Sensors</a>
+              <br>
+              <br>
+              <a ng-disabled="isDisabled" class="btn btn-primary" ng-click="StopAllSensor()">Stop All Sensors</a>
+            </div>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="container">
+    <table id="sensorTable">
+	  <thead>
+		  <tr>
+		    <th>MAP</th>
+		    <th>Sensor ID</th>
+		    <th>Sensor Name</th>
+		    <th>Sensor Type</th>
+		    <th>Sensor Status</th>
+		    <th>Sensor Value</th>
+		    <th>Sensor Unit</th>
+		    <th>Attached to Bus Number</th>
+		    <th>Group ID</th>
+		    <th>On</th>
+		    <th>Off</th>
+		    <th>Delete</th>
+		  </tr>
+	  </thead>
+
+	  <tbody>
+
+	  </tbody>
+	</table>
+	</div>
+
+    <!--Handlers -->
+    <script>
+    var app = angular.module("broadcastApp", []);
+    app.controller("BcCtrl", function ($scope, $http) {
+        
+        <!--POST method of Add Sensor-->
+        $scope.AddSensor = function () {
+            
+            var data = JSON.stringify({
+                SensorName: $scope.SensorName,
+                SensorType: parseInt($('#DropDownSensorTypeOption').val()),
+                HostVehicleID: $('#DropDownBusOption').val()
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;'
+                }
+            }
+
+            $http.post('/sensor-provider/api/add-sensor', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                $scope.ShowAllSensor();
+            })
+            .error(function (data, status, header, config) {
+                console.log("data: ", data);
+                console.log("status: ", status);
+                console.log("headers: ", headers);
+                console.log("config: ", config);
+            });
+        };
+        
+        <!--GET method to Start All Sensor-->
+        $scope.StartAllSensor = function () {
+
+            var parameters = {
+            };
+            var config = {
+                params: parameters
+            };
+
+            $http.get('/sensor-provider/api/traffic/on/', config)
+            .success(function (data, status, headers, config) {
+                $scope.Details = data;
+            })
+            .error(function (data, status, header, config) {
+                console.log("data: ", data);
+                console.log("status: ", status);
+                console.log("headers: ", headers);
+                console.log("config: ", config);
+            });
+        };
+        
+        <!--GET method to Stop All Sensor-->
+        $scope.StopAllSensor = function () {
+
+            var parameters = {
+            };
+            var config = {
+                params: parameters
+            };
+
+            $http.get('/sensor-provider/api/traffic/off/', config)
+            .success(function (data, status, headers, config) {
+                $scope.Details = data;
+            })
+            .error(function (data, status, header, config) {
+                console.log("data: ", data);
+                console.log("status: ", status);
+                console.log("headers: ", headers);
+                console.log("config: ", config);
+            });
+        };
+
+		// First, checks if it isn't implemented yet.
+		if (!String.prototype.format) {
+		  String.prototype.format = function() {
+		    var args = arguments;
+		    return this.replace(/{(\d+)}/g, function(match, number) { 
+		      return typeof args[number] != 'undefined'
+		        ? args[number]
+		        : match
+		      ;
+		    });
+		  };
+		}
+
+		<!--GET method to Delete specific Sensor-->
+        $scope.DeleteSensor = function (key) {
+			console.log("enter Delete key=: ", key);
+            var parameters = {
+            };
+            var config = {
+                params: parameters
+            };
+
+            var path = "/sensor-provider/api/delete-sensor?sensorid={0}".format(key);
+            $http.get(path, config)
+            .success(function (data, status, headers, config) {
+                $scope.Details = data;
+                ShowAllSensor();
+            })
+            .error(function (data, status, header, config) {
+                console.log("data: ", data);
+                console.log("status: ", status);
+                console.log("headers: ", headers);
+                console.log("config: ", config);
+            });
+        };
+
+        //
+        // GUID generator
+        //
+		function guid() {
+		  function s4() {
+		    return Math.floor((1 + Math.random()) * 0x10000)
+		      .toString(16)
+		      .substring(1);
+		  }
+		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+		    s4() + '-' + s4() + s4() + s4();
+		}
+
+
+		// First, checks if it isn't implemented yet.
+		if (!String.prototype.format) {
+		  String.prototype.format = function() {
+		    var args = arguments;d
+		    return this.replace(/{(\d+)}/g, function(match, number) { 
+		      return typeof args[number] != 'undefined'
+		        ? args[number]
+		        : match
+		      ;
+		    });
+		  };
+		}
+
+        <!--GET method to Show All Sensor-->
+        $scope.ShowAllSensor = function () {
+
+            var parameters = {
+            };
+            var config = {
+                params: parameters
+            };
+
+            $http.get('/sensor-provider/api/show-sensor-list', config)
+            .success(function (data, status, headers, config) {
+                $scope.Details = data;
+                $('#sensorTable tbody').remove();
+
+                $.each( data, function( key, value ) {
+                	var uuid = guid()
+                	var mapLink = "<a target=\"_blank\" ng-disabled=\"isDisabled\" class=\"btn btn-primary\" href=\"/sensor-provider/api/gmap?sensorid={0}\">map</a>".format(key);
+
+					var deleteLink = '<a id="DelSensor{0}" href="#" ng-disabled="isDisabled" class="btn btn-primary">DEL</a>'.format(uuid)
+					var onLink = '<a id="ONSensor{0}" href="#" ng-disabled="isDisabled" class="btn btn-primary">ON</a>'.format(uuid)
+					var offLink = '<a id="OFFSensor{0}" href="#" ng-disabled="isDisabled" class="btn btn-primary">OFF</a>'.format(uuid)
+
+                	//var onLink = "<a ng-disabled=\"isDisabled\" class=\"btn btn-primary\" href=\"/api/traffic/on?sensorid={0}\">ON</a>".format(key);
+                	//var offLink = "<a ng-disabled=\"isDisabled\" class=\"btn btn-primary\" href=\"/api/traffic/off?sensorid={0}\">OFF</a>".format(key);
+                	//var deleteLink = "<a ng-disabled=\"isDisabled\" class=\"btn btn-primary\" href=\"/api/delete-sensor?sensorid={0}\">DEL</a>".format(key);
+
+                	var TableRow = "<tr>"
+                	TableRow += "<td>"+ mapLink +"</td>";
+                	TableRow += "<td>"+ key +"</td>";
+                	TableRow += "<td>"+ value.SensorName +"</td>";
+                	TableRow += "<td>"+ value.Type +"</td>";
+                	TableRow += '<td id="td{0}">'.format(uuid) + value.State +"</td>";
+                	TableRow += "<td>"+ value.Value +"</td>";
+                	TableRow += "<td>"+ value.Unit +"</td>";
+                	TableRow += "<td>"+ value.HostVehicleID +"</td>";
+                	TableRow += "<td>"+ value.Group +"</td>";
+                	TableRow += "<td>"+ onLink +"</td>";
+                	TableRow += "<td>"+ offLink +"</td>";
+                	TableRow += "<td>"+ deleteLink +"</td>";
+                	TableRow += "</tr>";
+                	$('#sensorTable').append(TableRow);
+
+			        $('#sensorTable').on("click", "#DelSensor" + uuid, function(){ 
+						var td = $(this).parent();
+				        var tr = td.parent();
+						$http.get('/sensor-provider/api/delete-sensor?sensorid={0}'.format(key), config)
+			            .success(function (data, status, headers, config) {
+			                $scope.Details = data;
+			                //change the background color to red before removing
+					        tr.css("background-color","#FF3700");
+					        tr.fadeOut(400, function(){
+					            tr.remove();
+					        });
+			            })
+			        	return false; 
+			        });
+
+			        $('#sensorTable').on("click", "#ONSensor" + uuid, function(){ 
+						var td = $(this).parent();
+				        var tr = td.parent();
+						$http.get('/sensor-provider/api/traffic/on?sensorid={0}'.format(key), config)
+			            .success(function (data, status, headers, config) {
+			                $scope.Details = data;
+			                $("#td{0}".format(uuid)).text("1"); // change the table content
+				        	tr.css("background-color","#7BFF00"); 
+			            })
+			        	return false; 
+			        });
+
+			        $('#sensorTable').on("click", "#OFFSensor" + uuid, function(){ 
+			        	var td = $(this).parent();
+			        	var tr = td.parent();
+						$http.get('/sensor-provider/api/traffic/off?sensorid={0}'.format(key), config)
+			            .success(function (data, status, headers, config) {
+			                $scope.Details = data;
+			                $("#td{0}".format(uuid)).text("0"); // change the table content
+					        tr.css("background-color","#FFFFFF");
+			            })
+
+			        	return false; 
+			        });
+				  console.log("UUID: ", uuid);
+				});
+            })
+            .error(function (data, status, header, config) {
+                console.log("data: ", data);
+                console.log("status: ", status);
+                console.log("headers: ", headers);
+                console.log("config: ", config);
+            });
+
+            //$route.reload()
+            //$window.location.reload();
+            //$route.reload();
+        };
+
+      });
+    </script>
+  </body>
+</html>
+
