@@ -93,7 +93,7 @@ func initBusStopChannel() {
 
 		j := "Ding Don!"
 		for {
-			time.Sleep(100 * time.Millisecond)
+			time.Sleep(10000 * time.Millisecond)
 			go pubnub.Publish(BusStopMap[Coordinate{x, y}], string(j), successChannel, errorChannel)
 
 			select {
