@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/kr/pretty"
-	"github.com/oschwald/geoip2-golang"
 	"github.com/pubnub/go/messaging"
 	"golang.org/x/net/context"
 	"googlemaps.github.io/maps"
@@ -15,7 +14,6 @@ import (
 	"io"
 	"log"
 	"math/rand"
-	"net"
 	"net/http"
 	"strconv"
 	"strings"
@@ -32,41 +30,6 @@ func home(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-}
-
-func returnLatLong(w http.ResponseWriter, r *http.Request) {
-
-	// not recommended to open the file each time per request
-	// we put it here for tutorial sake.
-
-	db, err := geoip2.Open("GeoLite2-City.mmdb")
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer db.Close()
-
-	if r.Method == "POST" {
-		ipAddress := r.FormValue("ajax_post_data")
-
-		// If you are using strings that may be invalid, check that IP is not nil
-		// and a valid IP address -- see https://www.socketloop.com/tutorials/golang-validate-ip-address
-
-		if ipAddress != "" {
-			ip := net.ParseIP(ipAddress)
-			record, err := db.City(ip)
-			if err != nil {
-				fmt.Println(err)
-			}
-
-			fmt.Printf("Country name in English: %v\n", record.Country.Names["en"])
-			fmt.Printf("Coordinates: Lat(%v), Long(%v)\n", record.Location.Latitude, record.Location.Longitude)
-
-			w.Write([]byte(fmt.Sprintf("{\"Country\":\"%v\",\"Lat\": \"%v\",\"Long\":\"%v\"}", record.Country.Names["en"], record.Location.Latitude, record.Location.Longitude)))
-
-		}
-	}
 }
 
 type SensorProfile struct {
@@ -88,6 +51,7 @@ type SensorProfile struct {
 type SensorSignal struct {
 	SignalID  string  `json:"signal_id"`
 	SensorID  string  `json:"sensor_id"`
+	BusID     string  `json:"bus_id"`
 	TimeStamp string  `json:"last_update"`
 	Value     float64 `json:"value"`
 	Unit      string  `json:"unit"`
@@ -118,9 +82,9 @@ type Coordinate struct {
 // Global variables
 var sensorMap = make(map[string]SensorProfile)
 var trafficOn int = 0
-var my_pubkey = "pub-c-bcc7ac96-ccbe-4577-bd6f-66321585d73a"
-var my_subkey = "sub-c-6d08ffd2-a589-11e6-80e1-0619f8945a4f"
-var my_channel = "my_channel"
+var my_pubkey = "pub-c-275d4bd0-6556-4125-905c-a9f365a86a37"
+var my_subkey = "sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"
+var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
 var xyMap = make(map[int][]Coordinate)
 
@@ -154,6 +118,7 @@ func airPollutionGen() float64 {
 func signalHelper(sensor *SensorProfile, signal *SensorSignal) {
 	signal.SignalID, _ = newUUID()
 	signal.SensorID = sensor.ID
+	signal.BusID = sensor.HostVehicleID
 	signal.TimeStamp = strconv.FormatInt(time.Now().UnixNano(), 10)
 
 	// sensor type is noise
@@ -479,8 +444,6 @@ func main() {
 
 	mux := mux.NewRouter()
 
-	mux.HandleFunc("/returncoord", returnLatLong)
-
 	// Block of my sensor API
 	mux.HandleFunc("/sensor-provider/", home)                                      // sensorAdd.html
 	mux.HandleFunc("/sensor-provider/api/add-sensor", addSensorHandler)            // POST method
@@ -494,7 +457,7 @@ func main() {
 
 	// Enable to publish sensor info
 	trafficOn = 0
-	//subscribeSensorInfo()
+	subscribeSensorInfo()
 	go publishSensorInfo()
 	//gmapHandler()
 	parseCoordinates()

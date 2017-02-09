@@ -102,12 +102,12 @@
 
     function pubs() {
       pubnub = PUBNUB.init({
-        publish_key: 'pub-c-bcc7ac96-ccbe-4577-bd6f-66321585d73a',
-        subscribe_key: 'sub-c-6d08ffd2-a589-11e6-80e1-0619f8945a4f'
+        publish_key: 'pub-c-275d4bd0-6556-4125-905c-a9f365a86a37',
+        subscribe_key: 'sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe'
       })
 
       pubnub.subscribe({
-        channel: "my_channel",
+        channel: "All_Bus_Info",
         message: function(message, channel) {
           console.log(message)
           obj = JSON.parse(message);
