@@ -20,6 +20,7 @@ import (
 	"time"
 )
 
+// The main sensor provider page.
 func home(w http.ResponseWriter, r *http.Request) {
 
 	var templates = template.Must(template.New("locateip").ParseFiles("sensorAdd.html"))
