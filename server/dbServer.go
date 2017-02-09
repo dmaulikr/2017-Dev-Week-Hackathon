@@ -11,18 +11,24 @@ import (
 // Global variables
 var my_pubkey = "pub-c-275d4bd0-6556-4125-905c-a9f365a86a37"
 var my_subkey = "sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"
-var my_channel = ""All_Bus_Info
+var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
+var BusStopMap = make(map[string]Coordinate)
 
 type SensorSignal struct {
 	SignalID  string  `json:"signal_id"`
 	SensorID  string  `json:"sensor_id"`
-        BusID     string  `json:"bus_id"`
+	BusID     string  `json:"bus_id"`
 	TimeStamp string  `json:"last_update"`
 	Value     float64 `json:"value"`
 	Unit      string  `json:"unit"`
 	Long      float64 `json:"longitude"`
 	Lat       float64 `json:"latitude"`
+}
+
+type Coordinate struct {
+	Long float64
+	Lat  float64
 }
 
 func addSensorSignal2DB(s *mgo.Session, msg interface{}) {
