@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/pubnub/go/messaging"
-	"gopkg.in/mgo.v2"
 	"net/http"
 )
 
@@ -31,34 +30,10 @@ type Coordinate struct {
 	Lat  float64
 }
 
-func addSensorSignal2DB(s *mgo.Session, msg interface{}) {
-	session := s.Copy()
-	//defer session.Close()
-
-	var sig SensorSignal
-	err := json.Unmarshal([]byte(msg.(string)), &sig)
-	if err != nil {
-		fmt.Println("json decode fail!!!")
-		return
-	}
-
-	c := session.DB("fullstack").C("signal")
-	err = c.Insert(sig)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	fmt.Println("Insert Signal to Mongo DB!")
-}
-
-func subscribeSensorInfo(s *mgo.Session) {
+func subscribeSensorInfo() {
 	pubnub := messaging.NewPubnub(my_pubkey, my_subkey, "", "", false, "")
 	successChannel := make(chan []byte)
 	errorChannel := make(chan []byte)
-
-	session := s.Copy()
-	//defer session.Close()
 
 	go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
 
@@ -78,12 +53,6 @@ func subscribeSensorInfo(s *mgo.Session) {
 				case float64:
 					fmt.Println(msg[1].(string))
 				case []interface{}:
-					//c := session.DB("fullstack").C("signal")
-					//err = c.Insert(m[0])
-					//if err != nil {
-					//    fmt.Print("insert DB fail!")
-					//}
-					go addSensorSignal2DB(session, m[0])
 					fmt.Printf("Received message '%s' on channel '%s'\n", m[0], msg[2])
 					//return
 				default:
@@ -99,16 +68,12 @@ func subscribeSensorInfo(s *mgo.Session) {
 	}()
 }
 
-func main() {
-	session, err := mgo.Dial(db_addr)
-	if err != nil {
-		panic(err)
-		fmt.Println("cannot connet to the mongo DB!!!!")
-	}
-	defer session.Close()
-	session.SetMode(mgo.Monotonic, true)
-	fmt.Println("leave!")
+func initBusStopChannel() {
 
-	subscribeSensorInfo(session)
+}
+
+func main() {
+	initBusStopChannel()
+	subscribeSensorInfo()
 	http.ListenAndServe(":8080", nil)
 }
