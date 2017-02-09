@@ -88,6 +88,7 @@ var my_subkey = "sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"
 var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
 var xyMap = make(map[int][]Coordinate)
+var busSpeed = 100
 
 // newUUID generates a random UUID according to RFC 4122
 func newUUID() (string, error) {
@@ -154,7 +155,7 @@ func publishSensorInfo() {
 	for {
 		if trafficOn > 0 {
 			for _, sensor := range sensorMap {
-				time.Sleep(100 * time.Millisecond)
+				time.Sleep(time.Duration(busSpeed) * time.Millisecond)
 				//j, _ := json.Marshal(value)
 				//fmt.Println(string(j))
 				if sensor.State == 1 {
@@ -184,7 +185,8 @@ func subscribeSensorInfo() {
 	successChannel := make(chan []byte)
 	errorChannel := make(chan []byte)
 
-	go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
+	//go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
+	go pubnub.Subscribe("Bus_Stop_A", "", successChannel, false, errorChannel)
 
 	go func() {
 		for {

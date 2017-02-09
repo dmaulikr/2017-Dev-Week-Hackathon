@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/pubnub/go/messaging"
 	"net/http"
+	"time"
 )
 
 // Global variables
@@ -12,7 +13,7 @@ var my_pubkey = "pub-c-275d4bd0-6556-4125-905c-a9f365a86a37"
 var my_subkey = "sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"
 var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
-var BusStopMap = make(map[string]Coordinate)
+var BusStopMap = make(map[Coordinate]string)
 
 type SensorSignal struct {
 	SignalID  string  `json:"signal_id"`
@@ -69,11 +70,47 @@ func subscribeSensorInfo() {
 }
 
 func initBusStopChannel() {
+	BusStopMap[Coordinate{Long: -122.14292, Lat: 37.44198}] = "Bus_Stop_A"
+	BusStopMap[Coordinate{Long: -122.10125, Lat: 37.42798}] = "Bus_Stop_B"
+	BusStopMap[Coordinate{Long: -121.89964, Lat: 37.43222}] = "Bus_Stop_C"
 
+	/*
+		for k, v := range BusStopMap {
+		fmt.Println("Key:", k.Long, ",", k.Lat, "Value:", v)
+		}*/
+
+	x := -122.14292
+	y := 37.44198
+
+	_, ok := BusStopMap[Coordinate{x, y}]
+	if ok {
+		fmt.Println("Arrived!", BusStopMap[Coordinate{x, y}])
+
+		pubnub := messaging.NewPubnub(my_pubkey, my_subkey, "", "", false, "")
+		fmt.Println("PubNub SDK for go;", messaging.VersionInfo())
+		successChannel := make(chan []byte)
+		errorChannel := make(chan []byte)
+
+		j := "Ding Don!"
+		for {
+			time.Sleep(100 * time.Millisecond)
+			go pubnub.Publish(BusStopMap[Coordinate{x, y}], string(j), successChannel, errorChannel)
+
+			select {
+			case response := <-successChannel:
+				fmt.Println(string(response))
+				fmt.Println("Sent Message " + string(j))
+			case err := <-errorChannel:
+				fmt.Println(string(err))
+			case <-messaging.Timeout():
+				fmt.Println("Publish() timeout")
+			}
+		}
+	}
 }
 
 func main() {
 	initBusStopChannel()
-	subscribeSensorInfo()
+	//subscribeSensorInfo()
 	http.ListenAndServe(":8080", nil)
 }
