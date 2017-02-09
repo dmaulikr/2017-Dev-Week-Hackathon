@@ -1,0 +1,48 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AddSensorReq	sensor.go	/^type AddSensorReq struct {$/;"	t
+AddSensorRes	sensor.go	/^type AddSensorRes struct {$/;"	t
+Coordinate	sensor.go	/^type Coordinate struct {$/;"	t
+SensorProfile	sensor.go	/^type SensorProfile struct {$/;"	t
+SensorSignal	sensor.go	/^type SensorSignal struct {$/;"	t
+addSensor2DB	sensor.go	/^func addSensor2DB(sensor SensorProfile) {$/;"	f
+addSensorHandler	sensor.go	/^func addSensorHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+airPollutionGen	sensor.go	/^func airPollutionGen() float64 {$/;"	f
+bus	sensor.go	/^var bus = [5]string{$/;"	v
+db_addr	sensor.go	/^var db_addr = "54.191.90.246:27017"$/;"	v
+deleteSensorHandler	sensor.go	/^func deleteSensorHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+float_rand	sensor.go	/^func float_rand(start_num float64, end_num float64) float64 {$/;"	f
+gmapHandler	sensor.go	/^func gmapHandler() {$/;"	f
+guid	sensorAdd.html	/^		function guid() {$/;"	f
+home	sensor.go	/^func home(w http.ResponseWriter, r *http.Request) {$/;"	f
+initialize	gmapExample.html	/^    function initialize() {$/;"	f
+main	sensor.go	/^func main() {$/;"	f
+main	sensor.go	/^package main$/;"	p
+my_channel	sensor.go	/^var my_channel = "my_channel"$/;"	v
+my_pubkey	sensor.go	/^var my_pubkey = "pub-c-bcc7ac96-ccbe-4577-bd6f-66321585d73a"$/;"	v
+my_subkey	sensor.go	/^var my_subkey = "sub-c-6d08ffd2-a589-11e6-80e1-0619f8945a4f"$/;"	v
+newUUID	sensor.go	/^func newUUID() (string, error) {$/;"	f
+noiseGen	sensor.go	/^func noiseGen() float64 {$/;"	f
+parseCoordinates	sensor.go	/^func parseCoordinates() {$/;"	f
+publishSensorInfo	sensor.go	/^func publishSensorInfo() {$/;"	f
+pubs	gmapExample.html	/^    function pubs() {$/;"	f
+pushCoordToArray	gmapExample.html	/^    function pushCoordToArray(latIn, lngIn) {$/;"	f
+redraw	gmapExample.html	/^    function redraw() {$/;"	f
+returnLatLong	sensor.go	/^func returnLatLong(w http.ResponseWriter, r *http.Request) {$/;"	f
+s4	sensorAdd.html	/^		  function s4() {$/;"	f
+sensorMap	sensor.go	/^var sensorMap = make(map[string]SensorProfile)$/;"	v
+showGmap	sensor.go	/^func showGmap(w http.ResponseWriter, r *http.Request) {$/;"	f
+showSensorListHandler	sensor.go	/^func showSensorListHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+signalHelper	sensor.go	/^func signalHelper(sensor *SensorProfile, signal *SensorSignal) {$/;"	f
+subscribeSensorInfo	sensor.go	/^func subscribeSensorInfo() {$/;"	f
+test	sensor.go	/^func test(w http.ResponseWriter, r *http.Request) {$/;"	f
+trafficAllOFFHandler	sensor.go	/^func trafficAllOFFHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+trafficAllONHandler	sensor.go	/^func trafficAllONHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+trafficOn	sensor.go	/^var trafficOn int = 0$/;"	v
+trafficSensorOFFHandler	sensor.go	/^func trafficSensorOFFHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+trafficSensorONHandler	sensor.go	/^func trafficSensorONHandler(w http.ResponseWriter, r *http.Request) {$/;"	f
+xyMap	sensor.go	/^var xyMap = make(map[int][]Coordinate)$/;"	v
