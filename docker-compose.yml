@@ -1,0 +1,16 @@
+version: '2'
+services:
+
+  db:
+    user: "1000:50"  
+    build: db/.
+    volumes:
+      #- /var/lib/mysql
+      - ./db/DataBase:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: taiwan
+      MYSQL_DATABASE: taiwan
+
+  
+
+  
