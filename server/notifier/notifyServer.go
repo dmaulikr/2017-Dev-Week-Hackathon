@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/pubnub/go/messaging"
 	"net/http"
-	"time"
+	//"time"
 )
 
 // Global variables
@@ -51,19 +51,21 @@ func subscribeSensorInfo() {
 					fmt.Println(err)
 					return
 				}
-				fmt.Println("got msg!") //Test
+				//fmt.Println("got msg!") //Test
 				switch m := msg[0].(type) {
 				case float64:
 					fmt.Println(msg[1].(string))
 				case []interface{}:
-					fmt.Printf("Received message '%s' on channel '%s'\n", m[0], msg[2]) //m[0]:the JSON data. m[2]=channel ID
+					//fmt.Printf("Received message '%s' on channel '%s'\n", m[0], msg[2]) //m[0]:the JSON data. msg[2]=channel ID
 					var signal SensorSignal
 					err := json.Unmarshal([]byte(m[0].(string)), &signal)
 					if err == nil {
-						fmt.Println("long:", signal.Long)
-						fmt.Println("lat:", signal.Lat)
+						//fmt.Println("long:", signal.Long)
+						//fmt.Println("lat:", signal.Lat)
 						chID := isHitBusStop(signal.Long, signal.Lat)
 						if chID != "" {
+							fmt.Println("long:", signal.Long)
+							fmt.Println("lat:", signal.Lat)
 							notifyChannel(m[0].(string), chID)
 						}
 					} else {
@@ -87,20 +89,18 @@ func notifyChannel(data string, channelID string) {
 	errorChannel := make(chan []byte)
 	fmt.Println("Enter notifyChannel -1")
 	go func() {
-		for {
-			fmt.Println("Enter notifyChannel -2")
-			go pubnub.Publish(channelID, data, successChannel, errorChannel)
+		fmt.Println("Enter notifyChannel -2")
+		go pubnub.Publish(channelID, data, successChannel, errorChannel)
 
-			fmt.Println("Enter notifyChannel -3")
-			select {
-			case response := <-successChannel:
-				fmt.Println(string(response))
-				fmt.Println("Sent Message " + data)
-			case err := <-errorChannel:
-				fmt.Println(string(err))
-			case <-messaging.Timeout():
-				fmt.Println("Publish() timeout")
-			}
+		fmt.Println("Enter notifyChannel -3")
+		select {
+		case response := <-successChannel:
+			fmt.Println(string(response))
+			fmt.Println("Sent Message " + data)
+		case err := <-errorChannel:
+			fmt.Println(string(err))
+		case <-messaging.Timeout():
+			fmt.Println("Publish() timeout")
 		}
 	}()
 }
@@ -124,7 +124,7 @@ func initBusStopChannel() {
 	/* // For Test purpose only. It can be remove.
 	for k, v := range BusStopMap {
 	fmt.Println("Key:", k.Long, ",", k.Lat, "Value:", v)
-	}*/
+	}
 
 	x := -122.14292
 	y := 37.44198
@@ -153,7 +153,7 @@ func initBusStopChannel() {
 				}
 			}
 		}()
-	}
+	}*/
 }
 
 func main() {
