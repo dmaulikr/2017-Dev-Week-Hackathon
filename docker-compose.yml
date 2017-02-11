@@ -1,0 +1,22 @@
+version: '2'
+services:
+
+  MySQL:
+    image: mysql:5.7
+    user: "3306:3306"  
+    build: db/.
+    volumes:
+      #- /var/lib/mysql
+      - ./db/MySQL:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: taiwan
+      MYSQL_DATABASE: taiwan
+
+  MongoDB:
+    image: mongo:3.0.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/Mongo:/var/lib/mongodb
+    restart: always
+  
