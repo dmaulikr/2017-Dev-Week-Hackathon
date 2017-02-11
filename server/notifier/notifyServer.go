@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/pubnub/go/messaging"
 	"net/http"
-	//"time"
+	//	"time"
 )
 
 // Global variables
@@ -87,12 +87,10 @@ func subscribeSensorInfo() {
 func notifyChannel(data string, channelID string) {
 	successChannel := make(chan []byte)
 	errorChannel := make(chan []byte)
-	fmt.Println("Enter notifyChannel -1")
+	fmt.Println("Ready to notify channel: ", channelID)
 	go func() {
-		fmt.Println("Enter notifyChannel -2")
 		go pubnub.Publish(channelID, data, successChannel, errorChannel)
 
-		fmt.Println("Enter notifyChannel -3")
 		select {
 		case response := <-successChannel:
 			fmt.Println(string(response))
@@ -154,6 +152,30 @@ func initBusStopChannel() {
 			}
 		}()
 	}*/
+
+	/*
+		// For test purpose, directly notify and send message
+		successChannel := make(chan []byte)
+		errorChannel := make(chan []byte)
+
+		j := "Ding Don!"
+		go func() {
+			for {
+				time.Sleep(10000 * time.Millisecond)
+				go pubnub.Publish("Bus_Stop_B", string(j), successChannel, errorChannel)
+
+				select {
+				case response := <-successChannel:
+					fmt.Println(string(response))
+					fmt.Println("Sent Message " + string(j))
+				case err := <-errorChannel:
+					fmt.Println(string(err))
+				case <-messaging.Timeout():
+					fmt.Println("Publish() timeout")
+				}
+			}
+		}()
+	*/
 }
 
 func main() {

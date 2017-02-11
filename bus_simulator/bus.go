@@ -88,7 +88,9 @@ var my_subkey = "sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"
 var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
 var xyMap = make(map[int][]Coordinate)
-var busSpeed = 100
+var busSpeed = 20
+
+//var BusStopMap = make(map[Coordinate]string)
 
 // newUUID generates a random UUID according to RFC 4122
 func newUUID() (string, error) {
@@ -168,7 +170,7 @@ func publishSensorInfo() {
 					select {
 					case response := <-successChannel:
 						fmt.Println(string(response))
-						fmt.Println("Sent Message " + string(j))
+					//fmt.Println("Sent Message " + string(j))
 					case err := <-errorChannel:
 						fmt.Println(string(err))
 					case <-messaging.Timeout():
@@ -186,7 +188,7 @@ func subscribeSensorInfo() {
 	errorChannel := make(chan []byte)
 
 	//go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
-	go pubnub.Subscribe("Bus_Stop_A", "", successChannel, false, errorChannel)
+	go pubnub.Subscribe("Bus_Stop_B", "", successChannel, false, errorChannel)
 
 	go func() {
 		for {
@@ -460,7 +462,7 @@ func main() {
 
 	// Enable to publish sensor info
 	trafficOn = 0
-	subscribeSensorInfo()
+	//subscribeSensorInfo()
 	go publishSensorInfo()
 	//gmapHandler()
 	parseCoordinates()
