@@ -90,8 +90,26 @@ var my_channel = "All_Bus_Info"
 var db_addr = "54.191.90.246:27017"
 var xyMap = make(map[int][]Coordinate)
 var busSpeed = 20
+var busSleep = 10000
 
-//var BusStopMap = make(map[Coordinate]string)
+var BusStopMap = make(map[Coordinate]string)
+
+func initBusStopChannel() {
+	BusStopMap[Coordinate{longitude: -122.14292, latitude: 37.44198, altitude: 0}] = "Bus_Stop_A"
+	BusStopMap[Coordinate{longitude: -122.10125, latitude: 37.42798, altitude: 0}] = "Bus_Stop_B"
+	BusStopMap[Coordinate{longitude: -121.89964, latitude: 37.43222, altitude: 0}] = "Bus_Stop_C"
+}
+
+func isHitBusStop(Long float64, Lat float64) string {
+
+	_, ok := BusStopMap[Coordinate{Long, Lat, 0}] // if this coordinate founds in the hashmap
+	if ok {
+		fmt.Println("Arrived!", BusStopMap[Coordinate{Long, Lat, 0}])
+		return BusStopMap[Coordinate{Long, Lat, 0}]
+	}
+	return ""
+
+}
 
 // newUUID generates a random UUID according to RFC 4122
 func newUUID() (string, error) {
@@ -178,6 +196,13 @@ func publishSensorInfo() {
 					case <-messaging.Timeout():
 						fmt.Println("Publish() timeout")
 					}
+
+					chID := isHitBusStop(signal.Long, signal.Lat)
+					if chID != "" {
+						fmt.Println("Wait 10 sec as hit Bus Stop:", chID)
+						time.Sleep(time.Duration(busSleep) * time.Millisecond)
+					}
+
 				}
 			}
 		}
@@ -465,9 +490,10 @@ func main() {
 	// Enable to publish sensor info
 	trafficOn = 0
 	//subscribeSensorInfo()
-	go publishSensorInfo()
-	//gmapHandler()
 	parseCoordinates()
+	initBusStopChannel()
+
+	go publishSensorInfo()
 
 	// Start to port 3000 for REST service
 	http.ListenAndServe(":3000", mux)
