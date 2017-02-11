@@ -50,6 +50,7 @@ type SensorProfile struct {
 }
 
 type SensorSignal struct {
+	ChannelID string  `json:"channel"`
 	SignalID  string  `json:"signal_id"`
 	SensorID  string  `json:"sensor_id"`
 	BusID     string  `json:"bus_id"`
@@ -120,6 +121,7 @@ func airPollutionGen() float64 {
 }
 
 func signalHelper(sensor *SensorProfile, signal *SensorSignal) {
+	signal.ChannelID = my_channel
 	signal.SignalID, _ = newUUID()
 	signal.SensorID = sensor.ID
 	signal.BusID = sensor.HostVehicleID
@@ -170,7 +172,7 @@ func publishSensorInfo() {
 					select {
 					case response := <-successChannel:
 						fmt.Println(string(response))
-					//fmt.Println("Sent Message " + string(j))
+						fmt.Println("Sent Message " + string(j))
 					case err := <-errorChannel:
 						fmt.Println(string(err))
 					case <-messaging.Timeout():

@@ -1,11 +1,14 @@
 package main
 
 import (
+	crypto_rand "crypto/rand"
 	"encoding/json"
 	"fmt"
 	"github.com/pubnub/go/messaging"
+	"io"
 	"net/http"
-	//	"time"
+	"strconv"
+	"time"
 )
 
 // Global variables
@@ -18,6 +21,7 @@ var BusStopMap = make(map[Coordinate]string)
 var pubnub = messaging.NewPubnub(my_pubkey, my_subkey, "", "", false, "")
 
 type SensorSignal struct {
+	ChannelID string  `json:"channel"`
 	SignalID  string  `json:"signal_id"`
 	SensorID  string  `json:"sensor_id"`
 	BusID     string  `json:"bus_id"`
@@ -28,9 +32,30 @@ type SensorSignal struct {
 	Lat       float64 `json:"latitude"`
 }
 
+type NotifyArriveSignal struct {
+	ChannelID string `json:"channel"`
+	Action    int    `json:"action"`
+	TimeStamp string `json:"last_update"`
+	SignalID  string `json:"signal_id"`
+}
+
 type Coordinate struct {
 	Long float64
 	Lat  float64
+}
+
+// newUUID generates a random UUID according to RFC 4122
+func newUUID() (string, error) {
+	uuid := make([]byte, 16)
+	n, err := io.ReadFull(crypto_rand.Reader, uuid)
+	if n != len(uuid) || err != nil {
+		return "", err
+	}
+	// variant bits; see section 4.1.1
+	uuid[8] = uuid[8]&^0xc0 | 0x80
+	// version 4 (pseudo-random); see section 4.1.3
+	uuid[6] = uuid[6]&^0xf0 | 0x40
+	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:]), nil
 }
 
 func subscribeSensorInfo() {
@@ -66,7 +91,7 @@ func subscribeSensorInfo() {
 						if chID != "" {
 							fmt.Println("long:", signal.Long)
 							fmt.Println("lat:", signal.Lat)
-							notifyChannel(m[0].(string), chID)
+							notifyChannel(chID)
 						}
 					} else {
 						fmt.Println("Unmarshal failed! =>", err)
@@ -84,23 +109,29 @@ func subscribeSensorInfo() {
 	}()
 }
 
-func notifyChannel(data string, channelID string) {
+func notifyChannel(chanID string) {
 	successChannel := make(chan []byte)
 	errorChannel := make(chan []byte)
-	fmt.Println("Ready to notify channel: ", channelID)
-	go func() {
-		go pubnub.Publish(channelID, data, successChannel, errorChannel)
+	fmt.Println("Ready to notify channel: ", chanID)
 
-		select {
-		case response := <-successChannel:
-			fmt.Println(string(response))
-			fmt.Println("Sent Message " + data)
-		case err := <-errorChannel:
-			fmt.Println(string(err))
-		case <-messaging.Timeout():
-			fmt.Println("Publish() timeout")
-		}
-	}()
+	var signal NotifyArriveSignal
+	signal.ChannelID = chanID
+	signal.Action = 0
+	signal.TimeStamp = strconv.FormatInt(time.Now().UnixNano(), 10)
+	signal.SignalID, _ = newUUID()
+
+	j, _ := json.Marshal(signal)
+	go pubnub.Publish(chanID, string(j), successChannel, errorChannel)
+
+	select {
+	case response := <-successChannel:
+		fmt.Println(string(response))
+		fmt.Println("Sent Message " + string(j))
+	case err := <-errorChannel:
+		fmt.Println(string(err))
+	case <-messaging.Timeout():
+		fmt.Println("Publish() timeout")
+	}
 }
 
 func isHitBusStop(Long float64, Lat float64) string {
