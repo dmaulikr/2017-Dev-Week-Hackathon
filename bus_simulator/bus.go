@@ -190,7 +190,7 @@ func publishSensorInfo() {
 					select {
 					case response := <-successChannel:
 						fmt.Println(string(response))
-						fmt.Println("Sent Message " + string(j))
+						//fmt.Println("Sent Message " + string(j))
 					case err := <-errorChannel:
 						fmt.Println(string(err))
 					case <-messaging.Timeout():
@@ -200,13 +200,26 @@ func publishSensorInfo() {
 					chID := isHitBusStop(signal.Long, signal.Lat)
 					if chID != "" {
 						fmt.Println("Wait 10 sec as hit Bus Stop:", chID)
-						time.Sleep(time.Duration(busSleep) * time.Millisecond)
+						sensor.State = 0
+						sensorMap[sensor.ID] = sensor
+						go busArriveSleep(sensor.ID)
 					}
 
 				}
 			}
 		}
 	}
+}
+
+func busArriveSleep(sensorID string) {
+	sensor := sensorMap[sensorID]
+	sensor.State = 0
+	sensorMap[sensorID] = sensor
+
+	time.Sleep(time.Duration(busSleep) * time.Millisecond)
+
+	sensor.State = 1
+	sensorMap[sensorID] = sensor
 }
 
 func subscribeSensorInfo() {
@@ -216,6 +229,45 @@ func subscribeSensorInfo() {
 
 	//go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
 	go pubnub.Subscribe("Bus_Stop_B", "", successChannel, false, errorChannel)
+
+	go func() {
+		for {
+			select {
+			case response := <-successChannel:
+				var msg []interface{}
+
+				err := json.Unmarshal(response, &msg)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				fmt.Println("got msg!") //Test
+				switch m := msg[0].(type) {
+				case float64:
+					fmt.Println(msg[1].(string))
+				case []interface{}:
+					fmt.Printf("Received message '%s' on channel '%s'\n", m[0], msg[2])
+					//return
+				default:
+					panic(fmt.Sprintf("Unknown type: %T", m))
+				}
+
+			case err := <-errorChannel:
+				fmt.Println(string(err))
+			case <-messaging.SubscribeTimeout():
+				fmt.Println("Subscribe() timeout")
+			}
+		}
+	}()
+}
+
+func subscribeSensorInfo2() {
+	pubnub := messaging.NewPubnub(my_pubkey, my_subkey, "", "", false, "")
+	successChannel := make(chan []byte)
+	errorChannel := make(chan []byte)
+
+	//go pubnub.Subscribe(my_channel, "", successChannel, false, errorChannel)
+	go pubnub.Subscribe("Bus_Stop_C", "", successChannel, false, errorChannel)
 
 	go func() {
 		for {
@@ -489,7 +541,8 @@ func main() {
 
 	// Enable to publish sensor info
 	trafficOn = 0
-	//subscribeSensorInfo()
+	subscribeSensorInfo()  // for teat purpose. you can delete.
+	subscribeSensorInfo2() // for test purpose. you can delete
 	parseCoordinates()
 	initBusStopChannel()
 
