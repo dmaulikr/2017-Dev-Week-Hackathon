@@ -7,6 +7,8 @@ target 'iOSSmartBus' do
   # use_frameworks!
     platform :ios, '7.0' # (or '9.0' or '10.0')
     pod "PubNub", "~> 4"
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
   # Pods for iOSSmartBus
 
   target 'iOSSmartBusTests' do

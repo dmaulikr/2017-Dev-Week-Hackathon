@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		090484BD1BAEE31CD599F95A /* libPods-iOSSmartBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5160CFEEFF5ADFB36FE8AEFB /* libPods-iOSSmartBusUITests.a */; };
+		0B8C55F71E50E5F900B751B8 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C55F61E50E5F900B751B8 /* MapViewController.m */; };
 		0BBC89D41E4AE523001626DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D31E4AE523001626DF /* main.m */; };
 		0BBC89D71E4AE523001626DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D61E4AE523001626DF /* AppDelegate.m */; };
 		0BBC89DA1E4AE523001626DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D91E4AE523001626DF /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B8C55F51E50E5F900B751B8 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		0B8C55F61E50E5F900B751B8 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		0BBC89CF1E4AE523001626DF /* iOSSmartBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSmartBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC89D31E4AE523001626DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0BBC89D51E4AE523001626DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				0BBC89D61E4AE523001626DF /* AppDelegate.m */,
 				0BBC89D81E4AE523001626DF /* ViewController.h */,
 				0BBC89D91E4AE523001626DF /* ViewController.m */,
+				0B8C55F51E50E5F900B751B8 /* MapViewController.h */,
+				0B8C55F61E50E5F900B751B8 /* MapViewController.m */,
 				0BBC89DB1E4AE523001626DF /* Main.storyboard */,
 				0BBC89DE1E4AE523001626DF /* Assets.xcassets */,
 				0BBC89E01E4AE523001626DF /* LaunchScreen.storyboard */,
@@ -256,7 +261,7 @@
 				TargetAttributes = {
 					0BBC89CE1E4AE523001626DF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = F6ZGPTKG5R;
+						DevelopmentTeam = CE62RG892N;
 						ProvisioningStyle = Automatic;
 					};
 					0BBC89E71E4AE523001626DF = {
@@ -466,6 +471,7 @@
 				0BBC89DA1E4AE523001626DF /* ViewController.m in Sources */,
 				0BBC89D71E4AE523001626DF /* AppDelegate.m in Sources */,
 				0BBC89D41E4AE523001626DF /* main.m in Sources */,
+				0B8C55F71E50E5F900B751B8 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,10 +619,10 @@
 			baseConfigurationReference = 3E5B459D3CCE2F52A50F7902 /* Pods-iOSSmartBus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = F6ZGPTKG5R;
+				DEVELOPMENT_TEAM = CE62RG892N;
 				INFOPLIST_FILE = iOSSmartBus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus.wayne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iOSSmartBus.leo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -626,10 +632,10 @@
 			baseConfigurationReference = B7780B1DC5F9311446F2DF86 /* Pods-iOSSmartBus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = F6ZGPTKG5R;
+				DEVELOPMENT_TEAM = CE62RG892N;
 				INFOPLIST_FILE = iOSSmartBus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus.wayne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iOSSmartBus.leo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

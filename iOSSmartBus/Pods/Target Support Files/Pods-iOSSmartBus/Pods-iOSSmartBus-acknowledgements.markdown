@@ -1,6 +1,14 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## GoogleMaps
+
+Copyright 2016 Google
+
+## GooglePlaces
+
+Copyright 2016 Google
+
 ## PubNub
 
 PubNub Real-time Cloud-Hosted Push API and Push Notification Client Frameworks

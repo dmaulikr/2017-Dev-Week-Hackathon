@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <AudioToolbox/AudioServices.h>
 #import <PubNub/PubNub.h>
+#import "MapViewController.h"
 
 @interface ViewController () <PNObjectEventListener> {
     //Picker View
@@ -151,8 +152,22 @@
     [self.client subscribeToChannels:@[@"Bus_Stop_A"] withPresence:YES];
     [self.client subscribeToChannels:@[@"Bus_Stop_C"] withPresence:YES];
     endStop = @"Bus_Stop_C";
+    
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"mapSeque"])
+    {
+        // Get reference to the destination view controller
+        MapViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        
+    }
+}
 - (void)vibratePhone;
 {
     if([[UIDevice currentDevice].model isEqualToString:@"iPhone"]) {
