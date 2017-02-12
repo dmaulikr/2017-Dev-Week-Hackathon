@@ -10,7 +10,17 @@
 
 @interface ViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *txtSource;
 @property (weak, nonatomic) IBOutlet UITextField *txtDestination;
+@property (weak, nonatomic) IBOutlet UIButton *btnRouteA;
+@property (weak, nonatomic) IBOutlet UIButton *btnRouteB;
+@property (weak, nonatomic) IBOutlet UIButton *btnRouteC;
+@property (weak, nonatomic) IBOutlet UILabel *lableRouteA;
+@property (weak, nonatomic) IBOutlet UILabel *lableRouteB;
+@property (weak, nonatomic) IBOutlet UILabel *lableRouteC;
+@property (weak, nonatomic) IBOutlet UIView *viewRouteA;
+@property (weak, nonatomic) IBOutlet UIView *viewRouteB;
+@property (weak, nonatomic) IBOutlet UIView *viewRouteC;
 
 - (IBAction)btnDestinationClicked:(id)sender;
 
