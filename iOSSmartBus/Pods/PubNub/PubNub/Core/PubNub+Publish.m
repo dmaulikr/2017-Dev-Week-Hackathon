@@ -362,9 +362,7 @@ NS_ASSUME_NONNULL_END
         __strong __typeof__(weakSelf) strongSelf = weakSelf;
         BOOL encrypted = NO;
         NSError *publishError = nil;
-        NSLog(@"Hello PNJSON .......");
         NSString *messageForPublish = [PNJSON JSONStringFrom:message withError:&publishError];
-        NSLog(@"Hello PNJSON .......%@", messageForPublish);
 
         // Encrypt message in case if serialization to JSON was successful.
         if (!publishError) {
