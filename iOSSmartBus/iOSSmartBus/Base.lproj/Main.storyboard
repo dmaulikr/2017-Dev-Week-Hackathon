@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zs8-mP-XGu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MEb-CG-nku">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -170,30 +170,11 @@
                         <outlet property="viewRouteA" destination="BL1-Mz-4tX" id="mSa-mR-Tus"/>
                         <outlet property="viewRouteB" destination="S7c-fD-y9Q" id="VUL-Ag-2YC"/>
                         <outlet property="viewRouteC" destination="5sB-sk-4JV" id="dN1-Sc-ZZl"/>
-                        <segue destination="jKV-So-lRt" kind="show" identifier="mapSeque" id="Enk-au-1ae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1268" y="-85"/>
-        </scene>
-        <!--Map View Controller-->
-        <scene sceneID="Sun-Ww-kEt">
-            <objects>
-                <viewController storyboardIdentifier="MapViewController" id="jKV-So-lRt" customClass="MapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IoE-Ep-BwZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ypa-pO-YvV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8mL-4H-Xfi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cXE-v3-kxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1991" y="-85"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sg7-Ns-TM2">
@@ -212,6 +193,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tV-gC-r6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="199" y="-50"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="jbx-sn-SBP">
+            <objects>
+                <viewController id="MEb-CG-nku" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aG7-kX-07f"/>
+                        <viewControllerLayoutGuide type="bottom" id="JPw-bh-27J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vjr-GU-pfE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="isa-al-JcE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="339"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRz-Ed-yHO" customClass="GoogleMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="394"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="isa-al-JcE" id="xhc-gd-D9x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JjC-pt-yqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2473" y="-96"/>
         </scene>
     </scenes>
 </document>
