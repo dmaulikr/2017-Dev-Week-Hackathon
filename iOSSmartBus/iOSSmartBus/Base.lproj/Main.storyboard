@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MEb-CG-nku">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zs8-mP-XGu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -167,9 +167,12 @@
                         <outlet property="lableRouteC" destination="nnm-Gg-UF3" id="mRI-Pt-9UI"/>
                         <outlet property="txtDestination" destination="mh7-Jg-DDj" id="gh3-ui-hZZ"/>
                         <outlet property="txtSource" destination="CF1-xJ-GaO" id="fH8-fU-kOk"/>
+                        <outlet property="viewAllRoute" destination="9K2-IH-wqr" id="hcE-bz-UL3"/>
                         <outlet property="viewRouteA" destination="BL1-Mz-4tX" id="mSa-mR-Tus"/>
                         <outlet property="viewRouteB" destination="S7c-fD-y9Q" id="VUL-Ag-2YC"/>
                         <outlet property="viewRouteC" destination="5sB-sk-4JV" id="dN1-Sc-ZZl"/>
+                        <outlet property="viewSrcDst" destination="P5V-hI-fJx" id="1ds-UL-QEf"/>
+                        <segue destination="MEb-CG-nku" kind="show" identifier="mapSeque" id="t3T-BJ-dZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

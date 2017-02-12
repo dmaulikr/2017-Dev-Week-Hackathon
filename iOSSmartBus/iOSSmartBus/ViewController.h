@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *viewRouteA;
 @property (weak, nonatomic) IBOutlet UIView *viewRouteB;
 @property (weak, nonatomic) IBOutlet UIView *viewRouteC;
+@property (weak, nonatomic) IBOutlet UIView *viewAllRoute;
+@property (weak, nonatomic) IBOutlet UIView *viewSrcDst;
+
 
 - (IBAction)btnDestinationClicked:(id)sender;
 

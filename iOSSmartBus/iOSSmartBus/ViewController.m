@@ -48,9 +48,9 @@
     
     
     // hard code for those info
-    [self.btnRouteA setTitle:@"Folsome - Fremon" forState:UIControlStateNormal];
-    [self.btnRouteB setTitle:@"Colma - Fremon" forState:UIControlStateNormal];
-    [self.btnRouteC setTitle:@"Colma - Orinda" forState:UIControlStateNormal];
+    [self.btnRouteA setTitle:@"SF - SJSU" forState:UIControlStateNormal];
+    [self.btnRouteB setTitle:@"DalyCity - SJSU" forState:UIControlStateNormal];
+    [self.btnRouteC setTitle:@"DalyCity - Santa Clara" forState:UIControlStateNormal];
     [self.lableRouteA setText:@"5 min"];
     [self.lableRouteB setText:@"10 min"];
     [self.lableRouteC setText:@"16 min"];
@@ -61,8 +61,9 @@
     [self.viewRouteA.layer setCornerRadius:20.f];
     [self.viewRouteB.layer setCornerRadius:20.f];
     [self.viewRouteC.layer setCornerRadius:20.f];
-//    [self.viewAllRoute.layer setCornerRadius:20.f];
-//    [self.viewAllRoute.layer setShadowOffset:CGSizeMake(20, 10)];
+    [self.viewAllRoute.layer setCornerRadius:20.f];
+    [self.viewAllRoute.layer setShadowOffset:CGSizeMake(20, 10)];
+    [self.viewSrcDst.layer setCornerRadius:20.f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +130,7 @@
 - (IBAction)btnRouteBClicked:(id)sender {
     endStop = @"Bus_Stop_B";
     
-    //    [self performSegueWithIdentifier:@"mapSeque" sender:self];
+    [self performSegueWithIdentifier:@"mapSeque" sender:self];
 }
 
 - (IBAction)btnRouteCClicked:(id)sender {
@@ -157,18 +158,18 @@
         NSString *sendMsg = @"luckmanlluckmanqactionluckmanqluckmanm7luckmanr";
         
         [vc.client publish:sendMsg
-                 toChannel:beginStop
-            storeInHistory:YES
-            withCompletion:^(PNPublishStatus *status) {
-                if (!status.isError) {
-                    NSLog(@"publish successfully");
-                    // Message successfully published to specified channel.
-                }
-                else
-                {
-                    NSLog(@"Fail publishing");
-                }
-            }];
+                   toChannel:beginStop
+              storeInHistory:YES
+              withCompletion:^(PNPublishStatus *status) {
+                  if (!status.isError) {
+                      NSLog(@"publish successfully");
+                      // Message successfully published to specified channel.
+                  }
+                  else
+                  {
+                      NSLog(@"Fail publishing");
+                  }
+              }];
         
         // Pass any objects to the view controller here, like...
         

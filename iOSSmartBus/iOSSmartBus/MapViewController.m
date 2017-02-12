@@ -128,16 +128,14 @@
             if ([self.beginStop isEqualToString:message.data.channel])
             {
                 // notify coming bus
+                [self vibratePhone];
             }
             else
             {
                 // notify stopping bus
+                [self vibratePhone];
             }
-            
-            //Virbration
-            //        [self vibratePhone];
         }
-        [self vibratePhone];
     }
 }
 
