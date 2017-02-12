@@ -7,14 +7,12 @@
 //
 
 #import "MapViewController.h"
-#import <PubNub/PubNub.h>
+#import <AudioToolbox/AudioServices.h>
 
 @interface MapViewController () <PNObjectEventListener> {
     GMSMapView *map;
     GMSMarker *bus;
 }
-
-@property (nonatomic, strong) PubNub *client;
 
 @end
 
@@ -86,6 +84,7 @@
     return YES;
 }
 
+#pragma mark - PubNub
 - (void)client:(PubNub *)client didReceiveMessage:(PNMessageResult *)message {
     
     // Handle new message stored in message.data.message
@@ -109,14 +108,49 @@
                                                                error:&error];
     
     NSLog(@"channel: %@", message.data.channel);
-    Float32 longitude = [[jsonDict objectForKey:@"longitude"] floatValue];
-    NSLog(@"longitude: %f", longitude);
-    Float32 latitude = [[jsonDict objectForKey:@"latitude"] floatValue];
-    NSLog(@"latitude: %f", longitude);
+    NSString *actionlValue = [jsonDict objectForKey:@"action"];
 
+    if([message.data.channel isEqualToString:@"All_Bus_Info"]) {
+        Float32 longitude = [[jsonDict objectForKey:@"longitude"] floatValue];
+        NSLog(@"longitude: %f", longitude);
+        Float32 latitude = [[jsonDict objectForKey:@"latitude"] floatValue];
+        NSLog(@"latitude: %f", longitude);
+        
+        
+        bus.position = [[[CLLocation alloc]initWithLatitude:latitude longitude:longitude] coordinate];
+        // marker postiton
 
-    bus.position = [[[CLLocation alloc]initWithLatitude:latitude longitude:longitude] coordinate];
-    // marker postiton
+    }
+    else {
+        // 0 進站
+        if ([actionlValue intValue] == 0)
+        {
+            if ([self.beginStop isEqualToString:message.data.channel])
+            {
+                // notify coming bus
+            }
+            else
+            {
+                // notify stopping bus
+            }
+            
+            //Virbration
+            //        [self vibratePhone];
+        }
+        [self vibratePhone];
+    }
+}
+
+- (void)vibratePhone;
+{
+    if([[UIDevice currentDevice].model isEqualToString:@"iPhone"]) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate); //works ALWAYS as of this post
+    }
+    else {
+        // Not an iPhone, so doesn't have vibrate
+        // play the less annoying tick noise or one of your own
+        AudioServicesPlayAlertSound(1105);
+    }
 }
 /*
 #pragma mark - Navigation

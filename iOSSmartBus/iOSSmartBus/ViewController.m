@@ -209,6 +209,7 @@
     NSLog(@"action: %d", [actionlValue intValue]);
     
     
+    // 0 進站
     if ([actionlValue intValue] == 0)
     {
         if ([beginStop isEqualToString:message.data.channel])
@@ -225,6 +226,7 @@
     }
     [self vibratePhone];
 }
+
 
 // Handle subscription status change.
 - (void)client:(PubNub *)client didReceiveStatus:(PNStatus *)status {
