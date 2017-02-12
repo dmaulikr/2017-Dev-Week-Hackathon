@@ -146,9 +146,14 @@ func isHitBusStop(Long float64, Lat float64) string {
 }
 
 func initBusStopChannel() {
-	BusStopMap[Coordinate{Long: -122.14292, Lat: 37.44198}] = "Bus_Stop_A"
-	BusStopMap[Coordinate{Long: -122.10125, Lat: 37.42798}] = "Bus_Stop_B"
-	BusStopMap[Coordinate{Long: -121.89964, Lat: 37.43222}] = "Bus_Stop_C"
+	BusStopMap[Coordinate{Long: -122.12179, Lat: 37.4473}] = "Bus_Stop_A"
+	BusStopMap[Coordinate{Long: -122.0869, Lat: 37.41683}] = "Bus_Stop_B"
+	BusStopMap[Coordinate{Long: -122.06867, Lat: 37.40809}] = "Bus_Stop_C"
+	BusStopMap[Coordinate{Long: -122.0354, Lat: 37.39971}] = "Bus_Stop_D"
+	BusStopMap[Coordinate{Long: -122.02285, Lat: 37.40373}] = "Bus_Stop_E"
+	BusStopMap[Coordinate{Long: -121.9701, Lat: 37.41854}] = "Bus_Stop_F"
+	BusStopMap[Coordinate{Long: -121.92585, Lat: 37.42267}] = "Bus_Stop_G"
+	BusStopMap[Coordinate{Long: -121.9097, Lat: 37.4294}] = "Bus_Stop_H"
 
 	/* // For Test purpose only. It can be remove.
 	for k, v := range BusStopMap {

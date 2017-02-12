@@ -95,9 +95,14 @@ var busSleep = 10000
 var BusStopMap = make(map[Coordinate]string)
 
 func initBusStopChannel() {
-	BusStopMap[Coordinate{longitude: -122.14292, latitude: 37.44198, altitude: 0}] = "Bus_Stop_A"
-	BusStopMap[Coordinate{longitude: -122.10125, latitude: 37.42798, altitude: 0}] = "Bus_Stop_B"
-	BusStopMap[Coordinate{longitude: -121.89964, latitude: 37.43222, altitude: 0}] = "Bus_Stop_C"
+	BusStopMap[Coordinate{longitude: -122.12179, latitude: 37.4473, altitude: 0}] = "Bus_Stop_A"
+	BusStopMap[Coordinate{longitude: -122.0869, latitude: 37.41683, altitude: 0}] = "Bus_Stop_B"
+	BusStopMap[Coordinate{longitude: -122.06867, latitude: 37.40809, altitude: 0}] = "Bus_Stop_C"
+	BusStopMap[Coordinate{longitude: -122.0354, latitude: 37.39971, altitude: 0}] = "Bus_Stop_D"
+	BusStopMap[Coordinate{longitude: -122.02285, latitude: 37.40373, altitude: 0}] = "Bus_Stop_E"
+	BusStopMap[Coordinate{longitude: -121.9701, latitude: 37.41854, altitude: 0}] = "Bus_Stop_F"
+	BusStopMap[Coordinate{longitude: -121.92585, latitude: 37.42267, altitude: 0}] = "Bus_Stop_G"
+	BusStopMap[Coordinate{longitude: -121.9097, latitude: 37.4294, altitude: 0}] = "Bus_Stop_H"
 }
 
 func isHitBusStop(Long float64, Lat float64) string {
