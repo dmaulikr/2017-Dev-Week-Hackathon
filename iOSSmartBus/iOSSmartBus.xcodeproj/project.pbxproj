@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090484BD1BAEE31CD599F95A /* libPods-iOSSmartBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5160CFEEFF5ADFB36FE8AEFB /* libPods-iOSSmartBusUITests.a */; };
 		0BBC89D41E4AE523001626DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D31E4AE523001626DF /* main.m */; };
 		0BBC89D71E4AE523001626DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D61E4AE523001626DF /* AppDelegate.m */; };
 		0BBC89DA1E4AE523001626DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89D91E4AE523001626DF /* ViewController.m */; };
@@ -15,6 +16,8 @@
 		0BBC89E21E4AE523001626DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC89E01E4AE523001626DF /* LaunchScreen.storyboard */; };
 		0BBC89ED1E4AE523001626DF /* iOSSmartBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89EC1E4AE523001626DF /* iOSSmartBusTests.m */; };
 		0BBC89F81E4AE523001626DF /* iOSSmartBusUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC89F71E4AE523001626DF /* iOSSmartBusUITests.m */; };
+		8C03FC03F4BD2BAF7B985340 /* libPods-iOSSmartBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD65FDB3844ACB2E86E45B5 /* libPods-iOSSmartBusTests.a */; };
+		CDC007C07560F4B35ECC596E /* libPods-iOSSmartBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF0B9DD2FD2E1BB255CC6111 /* libPods-iOSSmartBus.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,15 @@
 		0BBC89F31E4AE523001626DF /* iOSSmartBusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSSmartBusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC89F71E4AE523001626DF /* iOSSmartBusUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSSmartBusUITests.m; sourceTree = "<group>"; };
 		0BBC89F91E4AE523001626DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C0A43626535BA8A72C3F635 /* Pods-iOSSmartBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBusTests/Pods-iOSSmartBusTests.release.xcconfig"; sourceTree = "<group>"; };
+		3E5B459D3CCE2F52A50F7902 /* Pods-iOSSmartBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBus/Pods-iOSSmartBus.debug.xcconfig"; sourceTree = "<group>"; };
+		5160CFEEFF5ADFB36FE8AEFB /* libPods-iOSSmartBusUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSSmartBusUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8379DA4D96CCDA1E6097A5AB /* Pods-iOSSmartBusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBusUITests/Pods-iOSSmartBusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B7780B1DC5F9311446F2DF86 /* Pods-iOSSmartBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBus.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBus/Pods-iOSSmartBus.release.xcconfig"; sourceTree = "<group>"; };
+		C81A25575CB8554D8565851C /* Pods-iOSSmartBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBusUITests/Pods-iOSSmartBusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DB18606511FBF305A21B312C /* Pods-iOSSmartBusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSmartBusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSmartBusTests/Pods-iOSSmartBusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EBD65FDB3844ACB2E86E45B5 /* libPods-iOSSmartBusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSSmartBusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0B9DD2FD2E1BB255CC6111 /* libPods-iOSSmartBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSSmartBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC007C07560F4B35ECC596E /* libPods-iOSSmartBus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C03FC03F4BD2BAF7B985340 /* libPods-iOSSmartBusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090484BD1BAEE31CD599F95A /* libPods-iOSSmartBusUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,8 @@
 				0BBC89EB1E4AE523001626DF /* iOSSmartBusTests */,
 				0BBC89F61E4AE523001626DF /* iOSSmartBusUITests */,
 				0BBC89D01E4AE523001626DF /* Products */,
+				13C3818F71FFBA33A153616A /* Pods */,
+				1AA2E1C4044392E1F930B15D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +157,29 @@
 			path = iOSSmartBusUITests;
 			sourceTree = "<group>";
 		};
+		13C3818F71FFBA33A153616A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E5B459D3CCE2F52A50F7902 /* Pods-iOSSmartBus.debug.xcconfig */,
+				B7780B1DC5F9311446F2DF86 /* Pods-iOSSmartBus.release.xcconfig */,
+				DB18606511FBF305A21B312C /* Pods-iOSSmartBusTests.debug.xcconfig */,
+				2C0A43626535BA8A72C3F635 /* Pods-iOSSmartBusTests.release.xcconfig */,
+				8379DA4D96CCDA1E6097A5AB /* Pods-iOSSmartBusUITests.debug.xcconfig */,
+				C81A25575CB8554D8565851C /* Pods-iOSSmartBusUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1AA2E1C4044392E1F930B15D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF0B9DD2FD2E1BB255CC6111 /* libPods-iOSSmartBus.a */,
+				EBD65FDB3844ACB2E86E45B5 /* libPods-iOSSmartBusTests.a */,
+				5160CFEEFF5ADFB36FE8AEFB /* libPods-iOSSmartBusUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BBC89FC1E4AE523001626DF /* Build configuration list for PBXNativeTarget "iOSSmartBus" */;
 			buildPhases = (
+				DB0764AB8FB523729890026E /* [CP] Check Pods Manifest.lock */,
 				0BBC89CB1E4AE523001626DF /* Sources */,
 				0BBC89CC1E4AE523001626DF /* Frameworks */,
 				0BBC89CD1E4AE523001626DF /* Resources */,
+				0B237C8240B483A35B89762C /* [CP] Embed Pods Frameworks */,
+				8BABD11FE858901B1F4FD769 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BBC89FF1E4AE523001626DF /* Build configuration list for PBXNativeTarget "iOSSmartBusTests" */;
 			buildPhases = (
+				839A9420FADD8ADECEC79DAA /* [CP] Check Pods Manifest.lock */,
 				0BBC89E41E4AE523001626DF /* Sources */,
 				0BBC89E51E4AE523001626DF /* Frameworks */,
 				0BBC89E61E4AE523001626DF /* Resources */,
+				1B3A9C0D1485BFF61EBE1358 /* [CP] Embed Pods Frameworks */,
+				CEEEEB66E558D2ACD74655FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BBC8A021E4AE523001626DF /* Build configuration list for PBXNativeTarget "iOSSmartBusUITests" */;
 			buildPhases = (
+				EBB603533080158698C7ACB4 /* [CP] Check Pods Manifest.lock */,
 				0BBC89EF1E4AE523001626DF /* Sources */,
 				0BBC89F01E4AE523001626DF /* Frameworks */,
 				0BBC89F11E4AE523001626DF /* Resources */,
+				6D810CABC10A311E65769616 /* [CP] Embed Pods Frameworks */,
+				9B40B0B0C3C3C90F86C39AEE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,7 +256,7 @@
 				TargetAttributes = {
 					0BBC89CE1E4AE523001626DF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CE62RG892N;
+						DevelopmentTeam = F6ZGPTKG5R;
 						ProvisioningStyle = Automatic;
 					};
 					0BBC89E71E4AE523001626DF = {
@@ -270,6 +319,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B237C8240B483A35B89762C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBus/Pods-iOSSmartBus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B3A9C0D1485BFF61EBE1358 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBusTests/Pods-iOSSmartBusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D810CABC10A311E65769616 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBusUITests/Pods-iOSSmartBusUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		839A9420FADD8ADECEC79DAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8BABD11FE858901B1F4FD769 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBus/Pods-iOSSmartBus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B40B0B0C3C3C90F86C39AEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBusUITests/Pods-iOSSmartBusUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CEEEEB66E558D2ACD74655FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSmartBusTests/Pods-iOSSmartBusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB0764AB8FB523729890026E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EBB603533080158698C7ACB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0BBC89CB1E4AE523001626DF /* Sources */ = {
@@ -423,30 +610,33 @@
 		};
 		0BBC89FD1E4AE523001626DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E5B459D3CCE2F52A50F7902 /* Pods-iOSSmartBus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE62RG892N;
+				DEVELOPMENT_TEAM = F6ZGPTKG5R;
 				INFOPLIST_FILE = iOSSmartBus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus.wayne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		0BBC89FE1E4AE523001626DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7780B1DC5F9311446F2DF86 /* Pods-iOSSmartBus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE62RG892N;
+				DEVELOPMENT_TEAM = F6ZGPTKG5R;
 				INFOPLIST_FILE = iOSSmartBus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.se.sjsu.iOSSmartBus.wayne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 		0BBC8A001E4AE523001626DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB18606511FBF305A21B312C /* Pods-iOSSmartBusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = CE62RG892N;
@@ -460,6 +650,7 @@
 		};
 		0BBC8A011E4AE523001626DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C0A43626535BA8A72C3F635 /* Pods-iOSSmartBusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = CE62RG892N;
@@ -473,6 +664,7 @@
 		};
 		0BBC8A031E4AE523001626DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8379DA4D96CCDA1E6097A5AB /* Pods-iOSSmartBusUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CE62RG892N;
 				INFOPLIST_FILE = iOSSmartBusUITests/Info.plist;
@@ -485,6 +677,7 @@
 		};
 		0BBC8A041E4AE523001626DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C81A25575CB8554D8565851C /* Pods-iOSSmartBusUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CE62RG892N;
 				INFOPLIST_FILE = iOSSmartBusUITests/Info.plist;
