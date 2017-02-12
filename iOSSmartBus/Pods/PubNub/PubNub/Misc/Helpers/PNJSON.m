@@ -20,24 +20,18 @@
 
         if ([object respondsToSelector:@selector(count)]) {
 
-            NSLog(@"WFT1");
             NSData *JSONData = [NSJSONSerialization dataWithJSONObject:object options:(NSJSONWritingOptions)0
                                                                  error:error];
             if (JSONData) {
 
                 JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
             }
-            
-            NSLog(@"JSONString: %@", JSONString);
         }
         else if ([self isJSONString:object]){
-            NSLog(@"WFT2");
 
             JSONString = [[NSString alloc] initWithFormat:@"\"%@\"", object];
-            NSLog(@"JSONString: %@", JSONString);
         }
         else {
-            NSLog(@"WFT3");
             JSONString = [[NSString alloc] initWithFormat:@"\"%@\"", object]; }
     }
     
