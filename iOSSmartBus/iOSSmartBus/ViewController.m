@@ -121,20 +121,19 @@
 }
 
 - (IBAction)btnRouteAClicked:(id)sender {
-    [self.client subscribeToChannels:@[@"Bus_Stop_A"] withPresence:YES];
-    endStop = @"Bus_Stop_A";
-    
-    [self performSegueWithIdentifier:@"mapSeque" sender:self];
-}
-
-- (IBAction)btnRouteBClicked:(id)sender {
     endStop = @"Bus_Stop_B";
     
     [self performSegueWithIdentifier:@"mapSeque" sender:self];
 }
 
-- (IBAction)btnRouteCClicked:(id)sender {
+- (IBAction)btnRouteBClicked:(id)sender {
     endStop = @"Bus_Stop_C";
+    
+    [self performSegueWithIdentifier:@"mapSeque" sender:self];
+}
+
+- (IBAction)btnRouteCClicked:(id)sender {
+    endStop = @"Bus_Stop_D";
     
     [self performSegueWithIdentifier:@"mapSeque" sender:self];
 }
@@ -153,6 +152,7 @@
         [self initPubNub:vc.client];
         [vc.client subscribeToChannels:@[beginStop] withPresence:YES];
         [vc.client subscribeToChannels:@[endStop] withPresence:YES];
+        [vc.client subscribeToChannels:@[@"Bus_Stop_C", @"Bus_Stop_D", @"Bus_Stop_E", @"Bus_Stop_F", @"Bus_Stop_G"] withPresence:YES];
         
         // publich to start stop
         NSString *sendMsg = @"luckmanlluckmanqactionluckmanqluckmanm7luckmanr";

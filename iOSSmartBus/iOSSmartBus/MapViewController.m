@@ -33,9 +33,11 @@
     NSArray* arrMarkerData = @[
                                @{@"title": @"Bus Stop A", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.44198 longitude:-122.14292]},
                                @{@"title": @"Bus Stop B", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.42798 longitude:-122.10125]},
-                               @{@"title": @"Bus Stop C", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.43222 longitude:-121.89964]},
-                               @{@"title": @"Bus Stop D", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.40373 longitude:-122.0354]},
-                               @{@"title": @"Bus Stop E", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.43222 longitude:-121.89964]},
+                               @{@"title": @"Bus Stop C", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.40809 longitude:-122.06867]},
+                               @{@"title": @"Bus Stop D", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.39971 longitude:-122.0354]},
+                               @{@"title": @"Bus Stop E", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.40373 longitude:-122.02285]},
+                               @{@"title": @"Bus Stop F", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.41854 longitude:-121.9701]},
+                               @{@"title": @"Bus Stop G", @"snippet": @"SJSU", @"position": [[CLLocation alloc]initWithLatitude:37.4294 longitude:-121.9097]},
                                ];
     
     for (NSDictionary* dict in arrMarkerData)
@@ -51,20 +53,8 @@
 
 }
 
-- (void)initPubNub
-{
-    // Initialize and configure PubNub client instance
-    PNConfiguration *configuration = [PNConfiguration configurationWithPublishKey:@"pub-c-275d4bd0-6556-4125-905c-a9f365a86a37"
-                                                                     subscribeKey:@"sub-c-ac319e2e-ee4c-11e6-b325-02ee2ddab7fe"];
-    self.client = [PubNub clientWithConfiguration:configuration];
-    [self.client addListener:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initPubNub];
-    [self.client subscribeToChannels:@[@"All_Bus_Info"] withPresence:YES];
     
     bus = [[GMSMarker alloc] init];
     bus.icon = [UIImage imageNamed:@"Bus.png"];
@@ -99,42 +89,48 @@
     NSLog(@"Received message: %@ on channel %@ at %@", message.data.message,
           message.data.channel, message.data.timetoken);
     
-    NSLog(@"dataMessageClass: %@", [message.data.message class]);
-    
     NSData *objectData = [message.data.message dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:objectData
                                                              options:NSJSONReadingMutableContainers
                                                                error:&error];
     
-    NSLog(@"channel: %@", message.data.channel);
     NSString *actionlValue = [jsonDict objectForKey:@"action"];
-
-    if([message.data.channel isEqualToString:@"All_Bus_Info"]) {
+    if ([message.data.channel isEqualToString:@"All_Bus_Info"]) {
         Float32 longitude = [[jsonDict objectForKey:@"longitude"] floatValue];
         NSLog(@"longitude: %f", longitude);
         Float32 latitude = [[jsonDict objectForKey:@"latitude"] floatValue];
         NSLog(@"latitude: %f", longitude);
         
-        
         bus.position = [[[CLLocation alloc]initWithLatitude:latitude longitude:longitude] coordinate];
         // marker postiton
 
     }
-    else {
+
+    // always receive notification, check the logic itself
+    {
+        NSLog(@"------------------------------------------------------------");
         // 0 進站
-        if ([actionlValue intValue] == 0)
+        if ((actionlValue != nil) && ([actionlValue intValue] == 0))
         {
             if ([self.beginStop isEqualToString:message.data.channel])
             {
-                // notify coming bus
+                // notify coming bus here
                 [self vibratePhone];
+                [self.mesgLabel setText:@"Arriving"];
+                
             }
-            else
+            else if ([self.endStop isEqualToString:message.data.channel])
             {
-                // notify stopping bus
+                // notify stopping bus here
                 [self vibratePhone];
+                [self.mesgLabel setText:@"Arriving"];
             }
+        }
+        else
+        {
+            // other actions
+            [self.mesgLabel setText:@"On the way"];
         }
     }
 }

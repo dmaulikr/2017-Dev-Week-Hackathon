@@ -13,6 +13,8 @@
 @interface MapViewController : UIViewController <GMSMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *mesgLabel;
+
 @property (nonatomic, strong) PubNub *client;
 @property (nonatomic, strong) NSString *beginStop;
 @property (nonatomic, strong) NSString *endStop;
